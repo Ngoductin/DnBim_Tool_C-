@@ -1,0 +1,117 @@
+﻿
+<Window x:Class="Dnbim_Tool.CheckDistance.CheckDistanceView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Check Element Distance According To Standard"
+        Width="400" Height="500"
+        MinWidth="600" MinHeight="450"
+        ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="Manual"
+        
+       PreviewKeyDown="Window_PreviewKeyDown"
+        Topmost="False ">
+<Window.Resources>
+    <Style x:Key="BorderlessTextBox" TargetType="TextBox">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <!-- Ẩn khung focus -->
+    </Style>
+</Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Standard Selection -->
+        <!--
+        <GroupBox Grid.Row="0" Header="Standard" Margin="0,0,0,10">
+            <ComboBox x:Name="cbbstandard" 
+                      HorizontalAlignment="Stretch"
+                     />
+        </GroupBox>-->
+
+        <StackPanel Margin="10">
+            <!-- Standard ComboBox -->
+            <GroupBox Header="Standard" Margin="0,0,0,10">
+                <ComboBox x:Name="cbboption"/>
+            </GroupBox>
+
+            <!-- Created Date -->
+            <Grid Margin="0,0,20,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Created:" Width="80" 
+                           
+                           VerticalAlignment="Center" 
+                           Height="16"
+                           />
+                <TextBox x:Name="cbb_Daycreated" Grid.Column="1"
+                         Style="{StaticResource BorderlessTextBox}"
+                 IsReadOnly="True" Margin="5,0,0,0"/>
+            </Grid>
+
+            <!-- Last Update -->
+            <Grid Margin="0,0,20,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Text="Last Update:" Width="80" VerticalAlignment="Center"/>
+                <TextBox x:Name="cbb_Dayupdate" Grid.Column="1"
+                         Style="{StaticResource BorderlessTextBox}"
+                 IsReadOnly="True" Margin="5,0,0,0"
+                 HorizontalAlignment="Stretch"/>
+            </Grid>
+
+            <!-- List Element và các nút bấm -->
+            <!-- ... -->
+        </StackPanel>
+        <!-- List Element - Tự động co giãn -->
+        <!--<GroupBox Grid.Row="3" Header="List Element">
+            <TreeView x:Name="myTreeView"
+              ScrollViewer.VerticalScrollBarVisibility="Auto"
+              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                        <TextBlock Text="{Binding Name}" TextWrapping="Wrap"/>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </GroupBox>-->
+        <GroupBox Grid.Row="3" Header="List Element">
+            <TreeView x:Name="myTreeView"
+          SelectedItemChanged="myTreeView_SelectedItemChanged"
+          ItemsSource="{Binding}">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                        <TextBlock Text="{Binding Name}" />
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="TreeViewItem">
+                        <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                    </Style>
+                </TreeView.ItemContainerStyle>
+            </TreeView>
+        </GroupBox>
+
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Content="Show" Width="80" Margin="0,0,10,0" Click="Button_Click_1"/>
+            <Button Content="Refresh" Width="80" Margin="0,0,10,0" Click="Button_Click"/>
+            <Button Content="Export..." Width="80" Margin="0,0,10,0"/>
+            <Button Content="Close" Width="80" Click="CloseButton_Click"/>
+        </StackPanel>
+    </Grid>
+    
+</Window>
+    

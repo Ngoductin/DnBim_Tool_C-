@@ -1,0 +1,40 @@
+﻿<Window x:Class="Dnbim_Tool.Sleeve.SleeveView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Dnbim_Tool.Sleeve"
+             mc:Ignorable="d" 
+      Title="Place Sleeve" Height="120" Width="200"
+ShowInTaskbar="True"
+ResizeMode="NoResize"
+WindowStartupLocation="CenterScreen"
+        KeyDown="Window_KeyDown">
+    <Grid  >
+        <!-- Tiêu đề -->
+
+        <StackPanel Margin="0,5,0,0">
+            <StackPanel Orientation="Vertical" Margin="10 0 0 0" HorizontalAlignment="Left" Height="100" >
+                <CheckBox x:Name ="cellings" Content="Ceilings" Grid.Column="0" HorizontalAlignment="Left" Margin="0 0 10 0" />
+                <CheckBox x:Name ="floors"  Content="Floors" Grid.Column="1" HorizontalAlignment="Left" Margin="0 0 10 0" />
+                <CheckBox x:Name ="walls" Content="Walls" Grid.Column="2" HorizontalAlignment="Left"/>
+            </StackPanel>
+           
+        </StackPanel>
+        <StackPanel Margin="0,5,0,0">
+            <StackPanel Orientation="Vertical" Margin="10 0 0 0" HorizontalAlignment="Right" Width="90" Height="100" >
+                <CheckBox x:Name ="pipe" Content="Pipe" Grid.Column="0" HorizontalAlignment="Left" Margin="0 0 10 0" />
+                <CheckBox x:Name ="duct" Content="Duct" Grid.Column="1" HorizontalAlignment="Left" Margin="0 0 10 0" />
+                <CheckBox x:Name ="cabletray" Content="Cable tray" Grid.Column="2" HorizontalAlignment="Left"/>
+            </StackPanel>
+
+        </StackPanel>
+
+
+        <StackPanel Orientation="Horizontal" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 5 5">
+            <Button x:Name="btOk" Width="45" Content="OK" Margin="0 0 5 0" Click="btOk_Click" />
+            <Button x:Name="btCancel" Width="45" Content="Cancel" Click="btCancel_Click" />
+        </StackPanel>
+
+    </Grid>
+</Window>

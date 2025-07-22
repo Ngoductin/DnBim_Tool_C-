@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Name>"Dnbim_Family_support Tool</Name>
+		<Assembly>C:\ProgramData\Autodesk\ApplicationPlugins\RevitMEP2024.bundle\Contents\DnBim_Tool.dll</Assembly>
+		<AddInId>C831E560-612C-47C6-A97F-AEC8EDAB0CF3</AddInId>
+		<FullClassName>DnBim_Tool.Ribbon</FullClassName>
+		<VendorId>Create By Tin</VendorId>
+		<VendorDescription>ngoductin20n@gmail.com</VendorDescription>
+	</AddIn>
+</RevitAddIns>

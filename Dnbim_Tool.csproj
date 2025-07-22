@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B48EEA68-0033-43B1-AE76-1C8B3CC31B24}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dnbim_Tool</RootNamespace>
+    <AssemblyName>Dnbim_Tool</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ExcelDataReader, Version=3.7.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>packages\ExcelDataReader.3.7.0\lib\net462\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.7.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>packages\ExcelDataReader.DataSet.3.7.0\lib\net462\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RevitAPI">
+      <HintPath>C:\Program Files\Autodesk\Revit 2022\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>C:\Program Files\Autodesk\Revit 2022\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Align support\ALIGN_SUPPORT_CMD.cs" />
+    <Compile Include="App\Ribbon.cs" />
+    <Compile Include="CalculateLength\CalculateLength.cs" />
+    <Compile Include="CheckDistance\CheckDistance.cs" />
+    <Compile Include="CheckDistance\Event\CloseEvent.cs" />
+    <Compile Include="CheckDistance\Event\RefreshEvent.cs" />
+    <Compile Include="CheckDistance\Event\ShowEvent.cs" />
+    <Compile Include="CheckDistance\Event\TreeNodeEvent.cs" />
+    <Compile Include="CheckDistance\CheckDistanceView.xaml.cs">
+      <DependentUpon>CheckDistanceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CheckDistance\DistanceCheckEventArgs.cs" />
+    <Compile Include="CheckDistance\HighlightEventHandler.cs" />
+    <Compile Include="Connect FWA\ConnectingCmd.cs" />
+    <Compile Include="CreateZ\CreateZ.cs" />
+    <Compile Include="CT.cs" />
+    <Compile Include="Fillter\FIllterElement.cs" />
+    <Compile Include="HOTGEAR\AlginNhaptop.cs" />
+    <Compile Include="HOTGEAR\ALGINTOP.cs" />
+    <Compile Include="HOTGEAR\ALIGNBOT.cs" />
+    <Compile Include="HOTGEAR\ALIGNLEFT.cs" />
+    <Compile Include="HOTGEAR\ALIGNRIGHT.cs" />
+    <Compile Include="MEP UpDown\Events\DuctEvent.cs" />
+    <Compile Include="MEP UpDown\MEPUpDownView.xaml.cs">
+      <DependentUpon>MEPUpDownView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MEP UpDown\PictureItems.cs" />
+    <Compile Include="MEP UpDown\Ultis\DuctUltis.cs" />
+    <Compile Include="MEP UpDown\UpDownCmd.cs" />
+    <Compile Include="Place Support\PictureItem.cs" />
+    <Compile Include="Place Support\PlaceSupportCmd.cs" />
+    <Compile Include="Place Support\PlaceSupportView.xaml.cs">
+      <DependentUpon>PlaceSupportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Place Support\Ultis\CabletTrayUltis.cs" />
+    <Compile Include="Place Support\Ultis\DuctUltis.cs" />
+    <Compile Include="Place Support\Ultis\PipeUltis.cs" />
+    <Compile Include="PlaceCassette\PlaceCassetteCmd.cs" />
+    <Compile Include="PlaceCassette\PlaceCassetteView.xaml.cs">
+      <DependentUpon>PlaceCassetteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Rotate 3D\Rotate3DCmd.cs" />
+    <Compile Include="Rotate 3D\Rotate3DView.xaml.cs">
+      <DependentUpon>Rotate3DView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SetLevel\SetLevelCmd.cs" />
+    <Compile Include="Sleeve\SleeveCmd.cs" />
+    <Compile Include="Sleeve\SleeveView.xaml.cs">
+      <DependentUpon>SleeveView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SplitDuct\SliptDuctCMD.cs" />
+    <Compile Include="SplitDuct\SlpitDuctView.xaml.cs">
+      <DependentUpon>SlpitDuctView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="CheckDistance\CheckDistanceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MEP UpDown\MEPUpDownView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Place Support\PlaceSupportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PlaceCassette\PlaceCassetteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Rotate 3D\Rotate3DView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sleeve\SleeveView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SplitDuct\SlpitDuctView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App\Dnbim_Family_support Tool.addin" />
+    <None Include="packages.config" />
+    <None Include="Resources\Connect_FWA.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rotate3D.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rotate3D_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Slpit_Duct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Support.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App\PackageContents.xml" />
+    <None Include="Resources\calculate.png" />
+    <None Include="Resources\logo khoa nhiet.png" />
+    <None Include="Resources\logo khoa nhiệt.png" />
+    <None Include="Resources\logo khoa nhiệt.ico" />
+    <None Include="Resources\MoveUpElbow90Img.png" />
+    <None Include="Resources\MoveUpElbow45Img.png" />
+    <None Include="Resources\MoveDownElbow90Img.png" />
+    <None Include="Resources\MoveDownElbow45Img.png" />
+    <None Include="Resources\CutElbowUp90Img.png" />
+    <None Include="Resources\CutElbowUp45Img.png" />
+    <None Include="Resources\CutElbowDown90Img.png" />
+    <None Include="Resources\CutElbowDown45Img.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
