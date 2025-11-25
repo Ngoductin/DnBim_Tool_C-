@@ -215,6 +215,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\PackageContents.xml" />
+    <Content Include="test.txt" />
     <None Include="Resources\Sheet.png" />
     <None Include="Resources\connect.png" />
     <None Include="Resources\sleeve.png" />
