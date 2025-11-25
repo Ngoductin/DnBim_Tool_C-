@@ -1,1 +1,11 @@
-what is this
+﻿what is this
+abc 123
+ok truoc khi a muon sync nguoi khac thi ghi
+git pull origin main
+roi sau do muon sync cua minh len thi
+git add . //git add co tac dung la them file tren repo
+git commit -m "tin nhan" //git commit co tac dung la luu lai nhung thay doi tren file cua minh
+git push origin main // chổ này có tác dụng là gì thế e
+// nghia la sync file minh len repository chung
+ez
+ok di agit yesgit
