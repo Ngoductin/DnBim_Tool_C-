@@ -13,14 +13,14 @@ using System.Windows.Controls;
 using Autodesk.Revit.DB.Visual;
 using System.Windows.Documents;
 
+
 using DnBim_Tool;
-using DnBim_Tool.SplitDuct;
 
 
-namespace Dnbim_Tool
+namespace DnBim_Tool
 {
     [Transaction(TransactionMode.Manual)]
-    public class SplitDuctCmd : IExternalCommand
+    public class SliptDuctCMD : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -34,6 +34,8 @@ namespace Dnbim_Tool
             //Reference reference = uidoc.Selection.PickObject(ObjectType.Element, new DuctFilter());
             //Duct originDuct = doc.GetElement(reference) as Duct;
 
+
+            //A
             SlpitDuctView window = new SlpitDuctView();
             window.ShowDialog();
 
@@ -124,7 +126,7 @@ namespace Dnbim_Tool
 
             return new XYZ(x, y, z);
         }
-
+        //a
         private void SplitDuctFromStartPoint(Document doc, Duct originDuct, double distance/*, XYZ gd1*/)
         {
             LocationCurve locationCurve = originDuct.Location as LocationCurve;

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
-namespace Dnbim_Tool
+namespace DnBim_Tool
 {//a
     [Transaction(TransactionMode.Manual)]
     public class ALIGN_SUPPORT_CMD : IExternalCommand

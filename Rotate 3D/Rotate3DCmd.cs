@@ -36,8 +36,8 @@ namespace DnBim_Tool
 
 
 
-            try
-            {
+            //try
+            //{
 
                 if (selectedElementIds.Count > 0)
                 {
@@ -70,8 +70,8 @@ namespace DnBim_Tool
                     if (window.DialogResult == true)
                     {
 
-                        try
-                        {
+                        //try
+                        //{
                             // Chọn ra trục quay của các vật thể
                             Reference ref0 = uidoc.Selection.PickObject(Autodesk.Revit.UI.Selection.ObjectType.Element, new Pipe_ConduitFilter(), "Chọn ống trục");
                             Line pipeline0 = null;
@@ -132,8 +132,8 @@ namespace DnBim_Tool
                                     trans.Start();
                                     Hashtable connectionMap = CT.DisconnectTwoEndsAndCache(doc, selectedElements);
                                     //HighlightConnectionMap(uidoc, doc, connectionMap);
-
-                                    foreach (Element element in selectedElements)
+                                  
+                            foreach (Element element in selectedElements)
                                     { //// Gỡ kết nối các đối tượng
 
                                         // Kiểm tra loại Location (LocationPoint hoặc LocationCurve)
@@ -159,8 +159,8 @@ namespace DnBim_Tool
                             }
 
 
-                        }
-                        catch { }
+                        //}
+                        //catch { }
                     }
                     else
                     {
@@ -192,9 +192,9 @@ namespace DnBim_Tool
 
                 #endregion
 
-            }
-            catch
-            { }
+            //}
+            //catch
+            //{ }
             return Result.Succeeded;
         }
         public static void HighlightEachPair(UIDocument uidoc, Hashtable connectionMap)

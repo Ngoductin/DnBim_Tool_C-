@@ -28,10 +28,9 @@ namespace Dnbim_Tool
             XYZ pick2 = r2.GlobalPoint;
 
             Element element1 = doc.GetElement(r1);
-           
+            
             if (element1 is Duct duct)
             {
-              
                 LocationCurve locationCurve = duct.Location as LocationCurve;
                  locationLine = locationCurve.Curve as Line;
             }
@@ -41,19 +40,13 @@ namespace Dnbim_Tool
                 locationLine = locationCurve.Curve as Line;
                 
             }
-            if (element1 is CableTray cableTray)
+            if (element1 is CableTray )
             {
                 LocationCurve locationCurve = element1.Location as LocationCurve;
                 locationLine = locationCurve.Curve as Line;
               
 
 
-            }
-            if (element1 is Conduit conduit)
-            {
-                LocationCurve locationCurve = conduit.Location as LocationCurve;
-                locationLine = locationCurve.Curve as Line;
-               
             }
             XYZ direction = locationLine.Direction;
 
@@ -75,34 +68,26 @@ namespace Dnbim_Tool
 
             IList<ElementId> ids = new List<ElementId>();
 
-           
 
             using (Transaction t = new Transaction(doc, " "))
             {
                 t.Start();
                 ElementId id1 = null;
-                if (element1 is Duct duct1)
+                if (element1 is Duct)
                 {
-                    
                     id1 = MechanicalUtils.BreakCurve(doc, element1.Id, p1);
                     ids.Add(id1);
                 }
-                if (element1 is Pipe pipe1)
+                if (element1 is Pipe)
                 {
                     id1 = PlumbingUtils.BreakCurve(doc, element1.Id, p1);
                     ids.Add(id1);
                    
                 }
-                if (element1 is CableTray cableTra1)
+                if (element1 is CableTray )
                 {
                    id1=CT.SliptCableTray(doc, element1.Id, p1);
                     ids.Add(id1);
-                }
-                if (element1 is Conduit conduit1)
-                {
-                    id1 = CT.SliptConduit(doc, element1.Id, p1);
-                    ids.Add(id1);
-                    
                 }
                 //a
                 ElementId id2 = null;
@@ -110,31 +95,24 @@ namespace Dnbim_Tool
 
                 try
                 {
-                    if (element1 is Autodesk.Revit.DB.Mechanical.Duct)
+                    if (element1 is Duct)
                     {
-                       
                         id2 = MechanicalUtils.BreakCurve(doc, element1.Id, p2);
-                        
                     }
-                    else if (element1 is Autodesk.Revit.DB.Plumbing.Pipe )
+                    if (element1 is Pipe)
                     {
                         id2 = PlumbingUtils.BreakCurve(doc, element1.Id, p2);
                         
                     }
-                    else if (element1 is Autodesk.Revit.DB.Electrical.CableTray)
+                    if (element1 is CableTray)
                     {
                         id2 = CT.SliptCableTray(doc, element1.Id, p2);
-                    }
-                    else if (element1 is Autodesk.Revit.DB.Electrical.Conduit)
-                    {
-                        id2 = CT.SliptConduit(doc, element1.Id, p2);
                     }
                 }
                 catch
                 {
                     if (element1 is Duct)
                     {
-                    
                         id3 = MechanicalUtils.BreakCurve(doc, id1, p2);
                     }
                     if (element1 is Pipe)
@@ -145,10 +123,6 @@ namespace Dnbim_Tool
                     {
                         id3 = CT.SliptCableTray(doc, id1, p2);
                     }
-                    if (element1 is Conduit)
-                    {
-                        id3 = CT.SliptConduit(doc, id1, p2);
-                    }
                 }
 
 
@@ -156,7 +130,7 @@ namespace Dnbim_Tool
                 if (id2 != null) ids.Add(id2);
                 if (id3 != null) ids.Add(id3);
                 ids.Add(element1.Id);
-               
+
                 CT.DeleteElement(doc, ids, length, out List<ElementId> newIds);
                 XYZ ngd1;
                 XYZ ngd2;
@@ -179,7 +153,6 @@ namespace Dnbim_Tool
                 double width = 0;
                 double height = 0;
                 double diameter = 0;
-                
                 if (element1 is Duct)
                 {
                     ductTypeId = element1.GetTypeId();
@@ -201,8 +174,6 @@ namespace Dnbim_Tool
                     ductRight = Duct.Create(doc, systemId, ductTypeId, levelId, p2, ngd2);
                     ductRight.get_Parameter(BuiltInParameter.RBS_CURVE_HEIGHT_PARAM).Set(height);
                     ductRight.get_Parameter(BuiltInParameter.RBS_CURVE_WIDTH_PARAM).Set(width);
-
-                  
                 }
 
 
@@ -252,27 +223,6 @@ namespace Dnbim_Tool
                     ductRight.get_Parameter(BuiltInParameter.RBS_CTC_SERVICE_TYPE)
                         .Set(element1.get_Parameter(BuiltInParameter.RBS_CTC_SERVICE_TYPE).AsString());
                 }
-                if (element1 is Conduit)
-                {
-                    ductTypeId = element1.GetTypeId();
-                    ElementId systemTypeId = element1.get_Parameter(BuiltInParameter.RBS_CTC_SERVICE_TYPE).AsElementId();
-                    ductTypeId = element1.GetTypeId();
-                    levelId = element1.get_Parameter(BuiltInParameter.RBS_START_LEVEL_PARAM).AsElementId();
-                    diameter = element1.get_Parameter(BuiltInParameter.RBS_CONDUIT_DIAMETER_PARAM).AsDouble();
-                    ductTop = Conduit.Create(doc, ductTypeId, ngd1, ngd2, levelId);
-                    ductTop = Conduit.Create(doc, ductTypeId, ngd1, ngd2, levelId);
-                    ductTop.get_Parameter(BuiltInParameter.RBS_CONDUIT_DIAMETER_PARAM).Set(diameter);
-
-
-
-
-                    ductLeft = Conduit.Create(doc, ductTypeId, p1, ngd1, levelId);
-                    ductLeft.get_Parameter(BuiltInParameter.RBS_CONDUIT_DIAMETER_PARAM).Set(diameter);
-                  
-
-                    ductRight = Conduit.Create(doc, ductTypeId, p2, ngd2, levelId);
-                    ductRight.get_Parameter(BuiltInParameter.RBS_CONDUIT_DIAMETER_PARAM).Set(diameter);
-                }
                 CT.CreateElbowFiting(doc, ductTop, ductLeft);
                 CT.CreateElbowFiting(doc, ductTop, ductRight);
 
@@ -295,27 +245,17 @@ namespace Dnbim_Tool
                     d1= doc.GetElement(newIds[0]) as CableTray;
                     d2= doc.GetElement(newIds[1]) as CableTray;
                 }
-                else if (element1 is Conduit)
-                {
-
-                    d1 = doc.GetElement(newIds[0]) as Conduit;
-                    d2 = doc.GetElement(newIds[1]) as Conduit;
-                }
                 bool isIntersection = CT.ChekSolid(d1, ductLeft);
-                //MessageBox.Show(ductLeft.Id.ToString());
-                //MessageBox.Show(d2.Id.ToString());
                 if (isIntersection)
                 {
-                   
                     
-                    CT.CreateElbowFitingsocua(doc, d1, ductLeft);
+                    CT.CreateElbowFiting(doc, d1, ductLeft);
                     CT.CreateElbowFiting(doc, d2, ductRight);
                 }
                 else
                 {
-                    
-                    CT.CreateElbowFiting(doc, d2, ductLeft);
                     //MessageBox.Show("Toibingu");
+                    CT.CreateElbowFiting(doc, d2, ductLeft);
                     CT.CreateElbowFiting(doc, d1, ductRight);
 
                 }
@@ -349,14 +289,6 @@ namespace Dnbim_Tool
                 locationLine = locationCurve.Curve as Line;
             }
             if (element1 is CableTray)
-            {
-                LocationCurve locationCurve = element1.Location as LocationCurve;
-                locationLine = locationCurve.Curve as Line;
-
-
-
-            }
-            if (element1 is Conduit)
             {
                 LocationCurve locationCurve = element1.Location as LocationCurve;
                 locationLine = locationCurve.Curve as Line;
@@ -408,12 +340,6 @@ namespace Dnbim_Tool
                 {
                     id1 = CT.SliptCableTray(doc, element1.Id, p1);
                     ids.Add(id1);
-                    
-                }
-                if (element1 is Conduit)
-                {
-                    id1 = CT.SliptConduit(doc, element1.Id, p1);
-                    ids.Add(id1);
                 }
                 //a
                 ElementId id2 = null;
@@ -433,10 +359,6 @@ namespace Dnbim_Tool
                     {
                         id2 = CT.SliptCableTray(doc, element1.Id, p2);
                     }
-                    if (element1 is Conduit)
-                    {
-                        id2 = CT.SliptConduit(doc, element1.Id, p2);
-                    }
                 }
                 catch
                 {
@@ -451,10 +373,6 @@ namespace Dnbim_Tool
                     if (element1 is CableTray)
                     {
                         id3 = CT.SliptCableTray(doc, id1, p2);
-                    }
-                    if (element1 is Conduit)
-                    {
-                        id3 = CT.SliptConduit(doc, id1, p2);
                     }
                 }
 
@@ -501,12 +419,12 @@ namespace Dnbim_Tool
 
 
                     ductLeft = Duct.Create(doc, systemId, ductTypeId, levelId, p1, ngd1);
-                    ductLeft.get_Parameter(BuiltInParameter.RBS_CURVE_HEIGHT_PARAM).Set(width);
-                    ductLeft.get_Parameter(BuiltInParameter.RBS_CURVE_WIDTH_PARAM).Set(height);
+                    ductLeft.get_Parameter(BuiltInParameter.RBS_CURVE_HEIGHT_PARAM).Set(height);
+                    ductLeft.get_Parameter(BuiltInParameter.RBS_CURVE_WIDTH_PARAM).Set(width);
 
                     ductRight = Duct.Create(doc, systemId, ductTypeId, levelId, p2, ngd2);
-                    ductRight.get_Parameter(BuiltInParameter.RBS_CURVE_HEIGHT_PARAM).Set(width);
-                    ductRight.get_Parameter(BuiltInParameter.RBS_CURVE_WIDTH_PARAM).Set(height);
+                    ductRight.get_Parameter(BuiltInParameter.RBS_CURVE_HEIGHT_PARAM).Set(height);
+                    ductRight.get_Parameter(BuiltInParameter.RBS_CURVE_WIDTH_PARAM).Set(width);
                 }
 
 
@@ -550,34 +468,13 @@ namespace Dnbim_Tool
                     ductLeft.get_Parameter(BuiltInParameter.RBS_CTC_SERVICE_TYPE)
                         .Set(element1.get_Parameter(BuiltInParameter.RBS_CTC_SERVICE_TYPE).AsString());
 
-                    ductRight = CableTray.Create(doc, ductTypeId, p2,ngd2, levelId);
+                    ductRight = CableTray.Create(doc, ductTypeId, p2, ngd2, levelId);
                     ductRight.get_Parameter(BuiltInParameter.RBS_CABLETRAY_HEIGHT_PARAM).Set(height);
                     ductRight.get_Parameter(BuiltInParameter.RBS_CABLETRAY_WIDTH_PARAM).Set(width);
                     ductRight.get_Parameter(BuiltInParameter.RBS_CTC_SERVICE_TYPE)
                         .Set(element1.get_Parameter(BuiltInParameter.RBS_CTC_SERVICE_TYPE).AsString());
-
-                   
                 }
-                if (element1 is Conduit)
-                {
-                    ductTypeId = element1.GetTypeId();
-                    ElementId systemTypeId = element1.get_Parameter(BuiltInParameter.RBS_CTC_SERVICE_TYPE).AsElementId();
-                    ductTypeId = element1.GetTypeId();
-                    levelId = element1.get_Parameter(BuiltInParameter.RBS_START_LEVEL_PARAM).AsElementId();
-                    diameter = element1.get_Parameter(BuiltInParameter.RBS_CONDUIT_DIAMETER_PARAM).AsDouble();
-                    ductTop = Conduit.Create(doc, ductTypeId, ngd1, ngd2, levelId);
-                    ductTop.get_Parameter(BuiltInParameter.RBS_CONDUIT_DIAMETER_PARAM).Set(diameter);
-
-
-
-
-                    ductLeft = Conduit.Create(doc, ductTypeId, p1, ngd1, levelId);
-                    ductLeft.get_Parameter(BuiltInParameter.RBS_CONDUIT_DIAMETER_PARAM).Set(diameter);
-
-
-                    ductRight = Conduit.Create(doc, ductTypeId,  p2,ngd2, levelId);
-                    ductRight.get_Parameter(BuiltInParameter.RBS_CONDUIT_DIAMETER_PARAM).Set(diameter);
-                }
+              
 
                 Element d1 = null;
                 Element d2 = null;
@@ -598,84 +495,29 @@ namespace Dnbim_Tool
                     d1 = doc.GetElement(newIds[0]) as CableTray;
                     d2 = doc.GetElement(newIds[1]) as CableTray;
                 }
-                else if (element1 is Conduit)
+
+
+
+                Line lineducttop = (ductTop.Location as LocationCurve).Curve as Line;
+                //Thanh gia do
+                double radianThanh = lineducttop.Direction.AngleTo(XYZ.BasisY);
+                double degreeThanh = Math.Round(radianThanh * 180 / Math.PI, 2);
+
+                if (degreeThanh != 0 || degreeThanh != 180) //ông song song trục X
                 {
-                    d1 = doc.GetElement(newIds[0]) as Conduit;
-                    d2 = doc.GetElement(newIds[1]) as Conduit;
+                    ElementTransformUtils.RotateElement(doc, ductLeft.Id, ((ductLeft.Location as LocationCurve).Curve as Line), Math.PI / 2);
+                    ElementTransformUtils.RotateElement(doc, ductRight.Id, ((ductRight.Location as LocationCurve).Curve as Line), Math.PI / 2);
                 }
-
-                if (element1 is Duct)
+                else
                 {
-                    Line lineducttop = (ductTop.Location as LocationCurve).Curve as Line;
-                    //Thanh gia do
-                    double radianThanh = lineducttop.Direction.AngleTo(XYZ.BasisX);
-                    double degreeThanh = Math.Round(radianThanh * 180 / Math.PI, 2);
+                    ElementTransformUtils.RotateElement(doc, ductLeft.Id, ((ductLeft.Location as LocationCurve).Curve as Line), (Math.PI / 2-radianThanh));
+                    ElementTransformUtils.RotateElement(doc, ductRight.Id, ((ductRight.Location as LocationCurve).Curve as Line), Math.PI / 2 - radianThanh);
 
-                    if (degreeThanh == 0 || degreeThanh == 180) //ông song song trục X
-                    {
-
-                        ElementTransformUtils.RotateElement(doc, ductLeft.Id, ((ductLeft.Location as LocationCurve).Curve as Line), Math.PI / 2);
-                        ElementTransformUtils.RotateElement(doc, ductRight.Id, ((ductRight.Location as LocationCurve).Curve as Line), Math.PI / 2);
-                    }
-                    else
-                    {
-                        ElementTransformUtils.RotateElement(doc, ductLeft.Id, ((ductLeft.Location as LocationCurve).Curve as Line), (/*Math.PI / 2-*/radianThanh));
-                        ElementTransformUtils.RotateElement(doc, ductRight.Id, ((ductRight.Location as LocationCurve).Curve as Line), /*Math.PI / 2 -*/ radianThanh);
-
-                    }
                 }
-                if (element1 is CableTray )
-                {
-                    Line lineducttop = (ductTop.Location as LocationCurve).Curve as Line;
-                    //Thanh gia do
-                    double radianThanh = locationLine.Direction.AngleTo(XYZ.BasisY);
-                    double degreeThanh = Math.Round(radianThanh * 180 / Math.PI, 2);
-                    //MessageBox.Show(degreeThanh.ToString());
-                    if(degreeThanh==0)
-                    {
-                        if (p1.DistanceTo(locationLine.GetEndPoint(0)) < p2.DistanceTo(locationLine.GetEndPoint(0)))
-                        {
-                            ElementTransformUtils.RotateElement(doc, ductLeft.Id, ((ductLeft.Location as LocationCurve).Curve as Line), Math.PI);
+                 bool isIntersection = CT.ChekSolid(d1, ductLeft);
 
-                        }
-                        if (p1.DistanceTo(locationLine.GetEndPoint(0)) > p2.DistanceTo(locationLine.GetEndPoint(0)))
-                        {
-                            ElementTransformUtils.RotateElement(doc, ductRight.Id, ((ductRight.Location as LocationCurve).Curve as Line), Math.PI);
-
-                        }
-                    }
-                    if (degreeThanh == 180)
-                    {
-                        if (p1.DistanceTo(locationLine.GetEndPoint(0)) < p2.DistanceTo(locationLine.GetEndPoint(0)))
-                        {
-                            
-                            ElementTransformUtils.RotateElement(doc, ductRight.Id, ((ductRight.Location as LocationCurve).Curve as Line), Math.PI);
-                        }
-                        if (p1.DistanceTo(locationLine.GetEndPoint(0)) > p2.DistanceTo(locationLine.GetEndPoint(0)))
-                        {
-                            ElementTransformUtils.RotateElement(doc, ductLeft.Id, ((ductLeft.Location as LocationCurve).Curve as Line), Math.PI);
-                        }
-
-
-                       
-
-
-
-                    }
-                    if (degreeThanh != 0 && degreeThanh != 180)
-                    {
-                        
-                        ElementTransformUtils.RotateElement(doc, ductLeft.Id, ((ductLeft.Location as LocationCurve).Curve as Line), (Math.PI  - radianThanh));
-                        //MessageBox.Show("Toibingu");
-                        ElementTransformUtils.RotateElement(doc, ductRight.Id, ((ductRight.Location as LocationCurve).Curve as Line), (Math.PI  -radianThanh));
-                    }
-                }
-                //a
-                bool isIntersection = CT.ChekSolid(d1, ductLeft);
-               
                 CT.CreateElbowFiting(doc, ductTop, ductLeft);
                 CT.CreateElbowFiting(doc, ductTop, ductRight);
-                
                 if (isIntersection)
                 {
                     CT.CreateElbowFiting(doc, d1, ductLeft);
@@ -683,12 +525,8 @@ namespace Dnbim_Tool
                 }
                 else
                 {
-
-
                     CT.CreateElbowFiting(doc, d2, ductLeft);
                     CT.CreateElbowFiting(doc, d1, ductRight);
-
-                    
                 }
 
 
@@ -1139,24 +977,6 @@ namespace Dnbim_Tool
 
 
                 t.Commit();
-            }
-        }
-        private static void EnsureSameUpDirection(Document doc, CableTray trayRef, CableTray trayToFix)
-        {
-            // Lấy transform của tray gốc
-            Line lineRef = (trayRef.Location as LocationCurve).Curve as Line;
-            Transform trfRef = lineRef.ComputeDerivatives(0.5, true);
-            XYZ upRef = trfRef.BasisZ.Normalize();
-
-            // Lấy transform của tray cần kiểm tra
-            Line lineFix = (trayToFix.Location as LocationCurve).Curve as Line;
-            Transform trfFix = lineFix.ComputeDerivatives(0.5, true);
-            XYZ upFix = trfFix.BasisZ.Normalize();
-
-            // Nếu dot < 0, nghĩa là hai hướng up ngược nhau → xoay 180°
-            if (upRef.DotProduct(upFix) < 0)
-            {
-                ElementTransformUtils.RotateElement(doc, trayToFix.Id, Line.CreateUnbound(lineFix.Origin, lineFix.Direction), Math.PI);
             }
         }
     }

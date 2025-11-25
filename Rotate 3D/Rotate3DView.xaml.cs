@@ -75,7 +75,7 @@ namespace DnBim_Tool.Rotate_3D
         {
             List<BitmapImage> images = new List<BitmapImage>()
             //{ CT.Convert(DnBim_Tool.Properties.Resources.Rotate3D) };
-            { CT.Convert(Dnbim_Tool.Properties.Resources.Rotate3D) };
+            { CT.Convert(Properties.Resources.Rotate3D_icon) };
             List<PictureItem> pictureItems = new List<PictureItem>();
             PictureItem pictureItem = new PictureItem(images[0]);
             pictureItems.Add(pictureItem);

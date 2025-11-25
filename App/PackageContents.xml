@@ -4,7 +4,7 @@
                     ProductType="Application"
                     Name="addin for Revit"
                     AppVersion="1.0"
-                    ProductCode="{EEFA9111-37AF-4CEA-923E-03160970CF33}" >
+                    ProductCode="{B1B28AF2-8A28-4522-9573-85F53EC82B2A}" >
 	<CompanyDetails Name="DnBim" Url="" Email="ngoductin20n@gmail.com" />
 	<RuntimeRequirements OS="Win64" Platform="Revit" SeriesMin="R2017" SeriesMax="R2017" />
 
@@ -48,6 +48,14 @@
 						Version="1.0.0"
 						ModuleName="Contents\Dnbim_Family_support Tool.addin"
 						AppDescription="for Revit 2024" />
+	</Components>
+
+	<Components Description="2025">
+		<RuntimeRequirements OS="Win64" Platform="Revit" SeriesMin="R2025" SeriesMax="R2025" />
+		<ComponentEntry AppName="BIM tool for Revit 2025"
+						Version="1.0.0"
+						ModuleName="Contents\Dnbim_Family_support Tool.addin"
+						AppDescription="for Revit 2025" />
 	</Components>
 
 

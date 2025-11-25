@@ -946,48 +946,55 @@ namespace DnBim_Tool
 
 
 
-
-                        foreach (Connector connector1 in connectorsset1)
+                        try
                         {
-                            try
+                            foreach (Connector connector1 in connectorsset1)
                             {
-                                if (connector1.Origin.DistanceTo(connectorele.Origin) < 1 / 304.8)
+                                try
                                 {
-
-
-                                    connector1.ConnectTo(connectorele);
-                                }
-                            }
-                            catch
-                            { }
-
-                            // Kiểm tra nếu phần tử có connectors
-                            ConnectorSet connectorsset2 = GetConnectors(element2);
-                            if (connectorsset2 != null && connectorsset2.Size > 0)
-                            {
-
-                                foreach (Connector connector2 in connectorsset2)
-                                {
-                                    try
+                                    if (connector1.Origin.DistanceTo(connectorele.Origin) < 1 / 304.8)
                                     {
-                                        if (connector1.Origin.DistanceTo(connector2.Origin) < 1 / 304.8)
+
+
+                                        connector1.ConnectTo(connectorele);
+                                    }
+                                }
+                                catch
+                                { }
+
+                                // Kiểm tra nếu phần tử có connectors
+                                ConnectorSet connectorsset2 = GetConnectors(element2);
+                                if (connectorsset2 != null && connectorsset2.Size > 0)
+                                {
+
+                                    foreach (Connector connector2 in connectorsset2)
+                                    {
+                                        try
                                         {
+                                            if (connector1.Origin.DistanceTo(connector2.Origin) < 1 / 304.8)
+                                            {
 
 
-                                            connector1.ConnectTo(connector2);
+                                                connector1.ConnectTo(connector2);
+                                            }
                                         }
+
+                                        catch
+                                        { }
+
                                     }
 
-                                    catch
-                                    { }
 
                                 }
 
 
                             }
-
+                        }
+                        catch
+                        {
 
                         }
+                       
                     }
                 }
             }

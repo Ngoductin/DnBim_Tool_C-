@@ -13,11 +13,12 @@ using Dnbim_Tool.MEP_UpDown;
 using DnBim_Tool;
 using DnBim_Tool.Place_Support;
 
-namespace Dnbim_Tool
+
+namespace DnBim_Tool
 {
     // Giấy phép để truy cập revit
     [Transaction(TransactionMode.Manual)]
-    public class MEPUpDownCmd : IExternalCommand
+    public class UpDownCmd : IExternalCommand
     {
         private static ExternalEvent _externalEvent;
         private static DuctEvent _ductEvent;
@@ -27,18 +28,19 @@ namespace Dnbim_Tool
             Document doc = uidoc.Document;
             View view=doc.ActiveView;
             //a
-            try
+            while (true)
             {
                 //a
                 var window = new MEPUpDownView();
                 window.ShowDialog();
                 //string NameTabCtrl = window.tentabcontrol;
+
                 if (window.DialogResult == true)
                 {
-                    while (true)
-                    {
+                   
 
-
+                      //  try
+                      //{
 
                         // Chọn đối tượng trước khi gọi ExternalEvent
                         Reference r1 = uidoc.Selection.PickObject(Autodesk.Revit.UI.Selection.ObjectType.Element, new DuctsPipesCableTraysSelectionFilter(), "Pick first point");
@@ -69,34 +71,34 @@ namespace Dnbim_Tool
                         {
                             case "Cut Up":
                                 {
-                                    if (angle == "45°") { DuctUltis.DuctCut45(doc, r1, r2, offset, true); }
+                                    if (angle == "45°") { Updownultis.DuctCut45(doc, r1, r2, offset, true); }
 
-                                    else DuctUltis.DuctCut90(doc, r1, r2, offset, true);
+                                    else Updownultis.DuctCut90(doc, r1, r2, offset, true);
 
                                     break;
                                 }
 
                             case "Cut Down":
                                 {
-                                    if (angle == "45°") DuctUltis.DuctCut45(doc, r1, r2, offset, false);
+                                    if (angle == "45°") Updownultis.DuctCut45(doc, r1, r2, offset, false);
 
-                                    else DuctUltis.DuctCut90(doc, r1, r2, offset, false);
+                                    else Updownultis.DuctCut90(doc, r1, r2, offset, false);
 
                                     break;
                                 }
                             case "Move Up":
                                 {
-                                    if (angle == "45°") DuctUltis.DuctMove45(doc, r1, r2, offset, true);
+                                    if (angle == "45°") Updownultis.DuctMove45(doc, r1, r2, offset, true);
 
-                                    else DuctUltis.DuctMove90(doc, r1, r2, offset, true);
+                                    else Updownultis.DuctMove90(doc, r1, r2, offset, true);
 
                                     break;
 
                                 }
                             case "Move Down":
                                 {
-                                    if (angle == "45°") DuctUltis.DuctMove45(doc, r1, r2, offset, false);
-                                    else DuctUltis.DuctMove90(doc, r1, r2, offset, false);
+                                    if (angle == "45°") Updownultis.DuctMove45(doc, r1, r2, offset, false);
+                                    else Updownultis.DuctMove90(doc, r1, r2, offset, false);
                                     break;
 
                                 }
@@ -106,20 +108,21 @@ namespace Dnbim_Tool
                                 }
 
                         }
+                    //}
 
-                    }
+
+                    //catch
+                    //{ }
                 }
                 else
                 {
-                   
+break;
                 }
+            }
+               
+              
 
-
-        }
-
-
-            catch
-            { }
+       
 
 
 

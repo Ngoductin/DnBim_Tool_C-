@@ -14,12 +14,16 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Autodesk.Revit.UI;
 using DnBim_Tool;
-
+using DnBim_Tool.Properties;
+using Microsoft.Vbe.Interop;
+using Window = System.Windows.Window;
 namespace Dnbim_Tool.MEP_UpDown
 {
     /// <summary>
     /// Interaction logic for MEPUpDownView.xaml
     /// </summary>
+    /// 
+    //a
     public partial class MEPUpDownView : Window
     {
         
@@ -35,21 +39,18 @@ namespace Dnbim_Tool.MEP_UpDown
         {
             InitializeComponent();
 
-            //cbb option
             var listOption = new List<string>() { "Cut Up", "Cut Down", "Move Up", "Move Down" };
             cbboption.ItemsSource = listOption;
             cbboption.SelectedItem = LastSelectedOption;
 
-
-            //cbbangle
             var angle = new List<string>() { "45°", "90°" };
             cbbangle.ItemsSource = angle;
             cbbangle.SelectedItem = LastAngle;
 
+            // CHỖ NÀY SỬA:
+            tboffset.Text = LastOffset.ToString(); // dùng giá trị cuối cùng người dùng đã nhập
 
-            tboffset.Text = "1000";
 
-          
 
 
 
@@ -59,16 +60,17 @@ namespace Dnbim_Tool.MEP_UpDown
             string findOption = $"{option}-{angle}";
             List<BitmapImage> images = new List<BitmapImage>()
             {
-                CT.Convert(Properties.Resources.CutElbowUp45Img),
-                CT.Convert(Properties.Resources.CutElbowUp90Img),
-                CT.Convert(Properties.Resources.CutElbowDown45Img),
-                CT.Convert(Properties.Resources.CutElbowDown90Img),
+                
+                //CT.Convert(Resources.CutElbowDown45Img),
+                //CT.Convert(Resources.CutElbowUp90Img),
+                //CT.Convert(Resources.CutElbowDown45Img),
+                //CT.Convert(Resources.CutElbowDown90Img),
 
 
-                CT.Convert(Properties.Resources.MoveUpElbow45Img),
-                CT.Convert(Properties.Resources.MoveUpElbow90Img),
-                CT.Convert(Properties.Resources.MoveDownElbow45Img),
-                CT.Convert(Properties.Resources.MoveDownElbow90Img),
+                //CT.Convert(Resources.MoveUpElbow45Img),
+                //CT.Convert(Resources.MoveUpElbow90Img),
+                //CT.Convert(Resources.MoveDownElbow45Img),
+                //CT.Convert(Resources.MoveDownElbow90Img),
 
 
             };
@@ -134,15 +136,14 @@ namespace Dnbim_Tool.MEP_UpDown
             if (!isNumber)
             {
                 MessageBox.Show("Enter a number!");
-                tboffset.Text = "1000";
+                tboffset.Text = LastOffset.ToString(); // quay về giá trị cũ nếu sai
             }
             else
             {
-               
+                Offset = number;
+                LastOffset = number; // LƯU lại giá trị người dùng đã nhập
 
-                DialogResult=true;
-               
-
+                DialogResult = true;
             }
 
         }

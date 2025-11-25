@@ -121,8 +121,8 @@
   <data name="calculate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\calculate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Connect_FWA" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Connect_FWA.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="connect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\connect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CutElbowDown45Img" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CutElbowDown45Img.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,16 +151,22 @@
   <data name="MoveUpElbow90Img" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MoveUpElbow90Img.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Rotate3D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Rotate3D.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Rotate3D_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Rotate3D_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Slpit_Duct" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Slpit_Duct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Sheet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sheet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sleeve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sleeve.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Split_Duct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Split_Duct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Support" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Support.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

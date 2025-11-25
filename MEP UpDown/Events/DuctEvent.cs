@@ -9,7 +9,7 @@ using Autodesk.Revit.UI;
 using Dnbim_Tool.MEP_UpDown;
 using DnBim_Tool;
 
-namespace Dnbim_Tool
+namespace DnBim_Tool
 {
     public class DuctEvent : IExternalEventHandler
     {

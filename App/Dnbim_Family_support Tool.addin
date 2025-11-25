@@ -3,7 +3,7 @@
 	<AddIn Type="Application">
 		<Name>"Dnbim_Family_support Tool</Name>
 		<Assembly>C:\ProgramData\Autodesk\ApplicationPlugins\RevitMEP2024.bundle\Contents\DnBim_Tool.dll</Assembly>
-		<AddInId>C831E560-612C-47C6-A97F-AEC8EDAB0CF3</AddInId>
+		<AddInId>B1B28AF2-8A28-4522-9573-85F53EC82B2A</AddInId>
 		<FullClassName>DnBim_Tool.Ribbon</FullClassName>
 		<VendorId>Create By Tin</VendorId>
 		<VendorDescription>ngoductin20n@gmail.com</VendorDescription>

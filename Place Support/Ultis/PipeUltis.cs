@@ -47,7 +47,7 @@ namespace DnBim_Tool
                     Line newLine = Line.CreateBound(point0, point1);
                     double radian = newLine.Direction.AngleTo(XYZ.BasisX);
                     double degree = Math.Round(radian * 180 / Math.PI, 2);
-
+                    //a
 
                     using (Transaction t = new Transaction(doc, " "))
                     {
@@ -81,7 +81,7 @@ namespace DnBim_Tool
                                 //double height = P_CT.CheckElementIntersection(element,pointOnLine);
 
 
-                                support.LookupParameter("Rod Length").Set(100/304.8);
+                                support.LookupParameter("Rod Length").Set(height);
                             }
                             else
                                 doc.Delete(support.Id);
@@ -183,7 +183,7 @@ namespace DnBim_Tool
                             support.LookupParameter("Nominal Diameter").Set(diameter);
 
                             double height = pointOnFace.DistanceTo(pointOnLine);
-                            support.LookupParameter("Rod Length").Set(100/304.8);
+                            support.LookupParameter("Rod Length").Set(height);
                         }
                         else
                             doc.Delete(support.Id);

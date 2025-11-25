@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DnBim_Tool.SplitDuct
+namespace DnBim_Tool
 {
     /// <summary>
     /// Interaction logic for SlpitDuctView.xaml

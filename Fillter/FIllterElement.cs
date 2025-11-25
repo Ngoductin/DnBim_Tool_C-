@@ -20,7 +20,8 @@ namespace DnBim_Tool
 
             return builtInCategory == BuiltInCategory.OST_PipeCurves ||
                    builtInCategory == BuiltInCategory.OST_Conduit   ||
-                   builtInCategory == BuiltInCategory.OST_PipeAccessory 
+                   builtInCategory == BuiltInCategory.OST_PipeAccessory ||
+                   builtInCategory == BuiltInCategory.OST_PipeFitting 
                    ;
         }
 
@@ -46,6 +47,7 @@ namespace DnBim_Tool
             return false;
         }
     }
+
     public class Pipe_ConduitFilter : ISelectionFilter
     {
        

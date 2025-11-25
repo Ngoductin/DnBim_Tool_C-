@@ -6,7 +6,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
 
-namespace Dnbim_Tool
+namespace DnBim_Tool
 {
     [Transaction(TransactionMode.Manual)]
     public class AlignTagBottomCmd : IExternalCommand

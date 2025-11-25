@@ -43,7 +43,7 @@ namespace DnBim_Tool
                         Duct duct1 = ducts[0];
                         Duct duct2 = ducts[1];
                         //MessageBox.Show("Tôi bị ngu");
-
+                        //a
                         // Ống thứ 1
                         LocationCurve locationduct1curve = duct1.Location as LocationCurve;
                         Line lineDuct1 = locationduct1curve.Curve as Line;
@@ -57,7 +57,7 @@ namespace DnBim_Tool
                         XYZ Lep1 = new XYZ(ep1.X, ep1.Y, (ep1.Z - lowpoint1));
                         Line newline1 = Line.CreateBound(Lsp1, Lep1);
 
-
+                        
                         // Ống thứ 2
 
                         LocationCurve locationpipe2curve = duct2.Location as LocationCurve;
@@ -169,7 +169,7 @@ namespace DnBim_Tool
                                         double height = pointOnFace.DistanceTo(pointOnLine);
 
 
-                                        support.LookupParameter("l_ty").Set(100/304.8);
+                                        support.LookupParameter("l_ty").Set(height);
                                     }
                                     else
                                     {
@@ -284,7 +284,7 @@ namespace DnBim_Tool
                                     double height = pointOnFace.DistanceTo(pointOnLine);
 
 
-                                    support.LookupParameter("l_ty").Set(100/304.8);
+                                    support.LookupParameter("l_ty").Set(height);
                                 }
                                 else
                                 {
@@ -484,7 +484,7 @@ namespace DnBim_Tool
                                 double height = pointOnFace.DistanceTo(pointOnLine);
 
 
-                                support.LookupParameter("l_ty").Set(100 / 304.8);
+                                support.LookupParameter("l_ty").Set(height);
                             }
                             else
                             {
@@ -576,7 +576,7 @@ namespace DnBim_Tool
                             double height = pointOnFace.DistanceTo(pointOnLine);
 
 
-                            support.LookupParameter("l_ty").Set(100 / 304.8);
+                            support.LookupParameter("l_ty").Set(height);
                         }
                         else
                         {
