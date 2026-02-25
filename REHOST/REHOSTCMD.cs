@@ -28,9 +28,10 @@ namespace Dnbim_Tool
             try
             {
                 //a
+                //a
                
                     // --------- CHẾ ĐỘ A: PLACE NEW ----------
-                    // 1) Chọn duct/pipe
+                    // a1) Chọn duct/pipe
                     Reference rDuct = uidoc.Selection.PickObject(ObjectType.Element, "Chọn ống/ống gió (duct/pipe)");
                     MEPCurve duct = doc.GetElement(rDuct) as MEPCurve;
                     if (duct == null) { TaskDialog.Show("Lỗi", "Đối tượng không phải MEPCurve."); return Result.Cancelled; }

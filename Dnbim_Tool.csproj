@@ -152,6 +152,9 @@
     <Compile Include="TẠO CHI TIẾT DETAIL\CREATDETAILGAS.cs" />
     <Compile Include="TẠO CHI TIẾT DETAIL\CT_TAODETAIL.cs" />
     <Compile Include="TẠO CHI TIẾT DETAIL\UPDATE_DETAIL.cs" />
+    <Compile Include="TẠO CHI TIẾT DETAIL\Windown_view.xaml.cs">
+      <DependentUpon>Windown_view.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
@@ -186,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SplitDuct\SlpitDuctView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TẠO CHI TIẾT DETAIL\Windown_view.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
